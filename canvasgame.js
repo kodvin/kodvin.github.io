@@ -173,8 +173,9 @@ function Game(startingMoney, bookArray, skillButton, skillMenu){
 	this.increaseExperience = function(experience){
 		self.experience += experience;
 	};
-	// afther changing current book we need to reassign book object in the global object array
+	// after changing current book we need to reassign book object in the global object array
 	this.changeCurrentBook = function(index){
+		console.log(self.bookArray[index]);
 		self.currentBook = self.bookArray[index];
 		self.repopulateArray();		
 	};
@@ -193,7 +194,7 @@ function Game(startingMoney, bookArray, skillButton, skillMenu){
 //this function is called when we change objects. for example if we change the current book 
 //we need to change reference to newly assigned book	
 	this.repopulateArray = function(){
-		drawableObjectArray = [theGame, theGame.background, theGame.currentBook,
+		objectArray = [theGame, theGame.background, theGame.currentBook,
 								  theGame.rightArrow, theGame.leftArrow, theGame.skillButton];
 	};
 }
@@ -577,6 +578,7 @@ var render = function () {
 	for(var i = 0; i < sortedArray.length; i++){
 		sortedArray[i].render(ctx);
 	}
+	//theGame.currentBook.render(ctx);
 	//rendering frame per second text
 	ctx.fillText(trueFps.toString(10) + " fps", 480, 20);
 };

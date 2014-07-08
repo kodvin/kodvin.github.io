@@ -26,7 +26,6 @@ function FPS(){
 var fps = FPS();
 var trueFps = 0;
 var theGame,
-	drawableObjectArray,
 	objectArray,
 	mousePosition;
 window.setInterval(function(){
@@ -175,7 +174,6 @@ function Game(startingMoney, bookArray, skillButton, skillMenu){
 	};
 	// after changing current book we need to reassign book object in the global object array
 	this.changeCurrentBook = function(index){
-		console.log(self.bookArray[index]);
 		self.currentBook = self.bookArray[index];
 		self.repopulateArray();		
 	};
@@ -195,7 +193,7 @@ function Game(startingMoney, bookArray, skillButton, skillMenu){
 //we need to change reference to newly assigned book	
 	this.repopulateArray = function(){
 		objectArray = [theGame, theGame.background, theGame.currentBook,
-								  theGame.rightArrow, theGame.leftArrow, theGame.skillButton];
+								  theGame.rightArrow, theGame.leftArrow, theGame.skillButton, theGame.skillMenu];
 	};
 }
 
@@ -479,7 +477,6 @@ function clickReporter(e){
 	var mousePosition = getMousePosition(canvas, e),
 	//sort array of interactable (items that can be clicked) items by z index
 	sortedArray = sortArrayFromHighestToLowest(objectArray);
-		
 	for (var i = 0; i < sortedArray.length; i++){
 		if(sortedArray[i].interactable){
 			if(sortedArray[i].inActiveShape(mousePosition)){
